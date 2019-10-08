@@ -131,7 +131,7 @@ function CreateExample(formula) {
         }),
         success: function (result) {
             clearForm();
-            resulrWriter(result.text);
+            resulrWriter(result.result);
 
             +$("table tbody").append(row(result.text));    
         }

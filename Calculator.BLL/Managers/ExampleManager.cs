@@ -7,14 +7,16 @@ using Calculator.BLL.Interfaces.Managers;
 using Calculator.DAL.Interfaces;
 using Calculator.DTO;
 using Calculator.Models;
+using Calculator.Operations;
 
 namespace Calculator.BLL.Managers
 {
     public class ExampleManager : BaseManager,IExampleManager
     {
-        public ExampleManager(IUnitOfWork unitOfWork,IMapper mapper) : base(unitOfWork,mapper)
+        private readonly IExampleActions _exampleActions;
+        public ExampleManager(IUnitOfWork unitOfWork,IMapper mapper,IExampleActions exampleActions) : base(unitOfWork,mapper)
         {
-
+            _exampleActions = exampleActions;
         }
 
         public async Task Delete(ExampleDTO example)
@@ -37,6 +39,9 @@ namespace Calculator.BLL.Managers
 
         public async Task Insert(ExampleDTO example)
         {
+            var b = _exampleActions.Calculate(example.Text);
+            example.Result = b;
+            example.Text += "=" + b.ToString();
             await unitOfWork.Examples.Insert(mapper.Map<ExampleDTO, Example>(example));
             await unitOfWork.Save();
         }

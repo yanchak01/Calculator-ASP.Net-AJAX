@@ -22,7 +22,6 @@ namespace Calculator.Controllers
         }
         public async Task<ActionResult> Index()
         {
-          //var item = await _exampleManager.GetAll();
             return View();
         }
        [HttpGet]
@@ -45,27 +44,18 @@ namespace Calculator.Controllers
             
             try
             {
-                var b = _exampleActions.Calculate(exampleDTO.Text);
-                var c = new ExampleDTO { Text = exampleDTO.Text + "=" + b.ToString() };
-                await _exampleManager.Insert(c);
+                await _exampleManager.Insert(exampleDTO);
 
-                return c;
+                return exampleDTO;
 
             }
             catch (Exception)
             {
                 var c = new ExampleDTO { Text = "Error" };
-                await _exampleManager.Insert(new ExampleDTO { Text = "Error" });
+                await _exampleManager.Insert(c);
                 return c;
 
             }
         }
-
-        public string Calculate(string Text)
-        {
-            var b = _exampleActions.Calculate(Text);
-            return Text + "=" + b.ToString();
-        }
-
     }
 }

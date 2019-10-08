@@ -125,7 +125,8 @@ namespace Calculator.Operations
                     //Беремо два останніх значення з стеку
                     double a = temp.Pop();
                     double b = temp.Pop();
-
+                    
+                    string bS = b.ToString();
                     switch (input[i]) //І роблю над ними дії, згідно оператору
                     {
                         case '+': result = b + a; break;
@@ -133,7 +134,7 @@ namespace Calculator.Operations
                         case '*': result = b * a; break;
                         case '/': result = b / a; break;
                         case '^': result = double.Parse(Math.Pow(double.Parse(b.ToString()), double.Parse(a.ToString())).ToString()); break;
-                        case '?': result = double.Parse(Math.Sqrt(double.Parse(a.ToString())).ToString());break;
+                        case '?': result = double.Parse(Math.Pow(b, 1.0 / a).ToString()); break;
                     }
                     temp.Push(result); //Результат записую назад в стек
                 }

@@ -43,7 +43,7 @@ function GetAllResults() {
         success: function (results) {
             var rows = "";
             $.each(results, function (index, result) {
-                rows += row(result);
+                rows += row(result.text);
             })
 
             $("table tbody").append(rows);
@@ -51,24 +51,23 @@ function GetAllResults() {
     });
 }
 
-var row = function (result) {
-    return "<tr><td>" + result.text + "</td></tr>";
+var row = function (ex) {
+    return "<tr><td>" + ex + "</td></tr>";
 };
 
-function CreateExample(text) {
+function CreateExample(formula) {
     $.ajax({
         url: '/Home/Insert',
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify({
-            text: text
-
+            text: formula
         }),
         success: function (result) {
             clearForm();
-            resulrWriter(result);
+            resulrWriter(result.result);
 
-            +$("table tbody").append(row(result));
+            +$("table tbody").append(row(result.text));
         }
     });
 }
@@ -78,9 +77,9 @@ function clearForm() {
     form.reset();
 }
 
-function resulrWriter(result) {
+function resulrWriter(text) {
     var form = document.forms["calculatorForm"];
-    form.elements["Text"].value = result.text;
+    form.elements["Text"].value = text;
 }
 
 $("form").submit(function (e) {
@@ -88,7 +87,7 @@ $("form").submit(function (e) {
     $('#errors').empty();
     $('#errors').hide();
     var id = this.elements["id"].value;
-    var formula = document.forms["calculatorForm"].elements["Text"].value;
+    var formula = this.elements["Text"].value;
     if (id == 0)
         CreateExample(formula);
     else {
@@ -96,3 +95,4 @@ $("form").submit(function (e) {
         CreateExample(formula);
     }
 });
+GetAllResults();
