@@ -8,57 +8,60 @@
 
     </head>
 <body>
-    <div>
-    <table class="table-overrides" id="results" align="left">
+    <div style="width:1000%">
+    <div style="float:left; width:500px">
+    <table class="my_table" id="results">
         <thead><tr>
             <th></th>
             <th></th>
             </tr>
         </thead>
         <tbody></tbody>
-    </table>  
-
-    <form class="main_place" id="calculatorForm" name="calculatorForm">
+    </table> 
+   </div>
+    <div style="float:left;width:500px">
+    <form class="my_form" id="calculatorForm" name="calculatorForm">
         <input type="hidden" name="id" value="0" />
-        <input class="form-control" size="50" id="Text" name="Text" />
-        
+        <input class="input-field" size="50" id="Text" name="Text" />
+        <div>
             <ul class="button-items">
-                <li><button type="button" class="result-button" onclick="clearForm()">C</button></li>
-                <li><button type="button" class="result-button" onclick="">(</button></li>
+                <li><button type="button" class="clear-buttons" onclick="clearForm()">C</button></li>
+                <li><button type="button" class="clear-buttons" onclick="">(</button></li>
             </ul>
             <ul class="button-items">
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('(')">(</button></li>
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression(')')">)</button></li>
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('^')">^</button></li>
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('?')">?</button></li>
+                <li><button type="button" class="action-buttons" onclick="addToExpression('(')">(</button></li>
+                <li><button type="button" class="action-buttons" onclick="addToExpression(')')">)</button></li>
+                <li><button type="button" class="action-buttons" onclick="addToExpression('^')">^</button></li>
+                <li><button type="button" class="action-buttons" onclick="addToExpression('?')">√</button></li>
             </ul>
             <ul class="button-items">
                 <li><button type="button" class="numbers-buttons" onclick="addToExpression('9')">9</button></li>
                 <li><button type="button" class="numbers-buttons" onclick="addToExpression('8')">8</button></li>
                 <li><button type="button" class="numbers-buttons" onclick="addToExpression('7')">7</button></li>
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('+')">+</button></li>
+                <li><button type="button" class="action-buttons" onclick="addToExpression('+')">+</button></li>
             </ul>
             <ul class="button-items">
                 <li><button type="button" class="numbers-buttons" onclick="addToExpression('6')">6</button></li>
                 <li><button type="button" class="numbers-buttons" onclick="addToExpression('5')">5</button></li>
                 <li><button type="button" class="numbers-buttons" onclick="addToExpression('4')">4</button></li>
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('-')">-</button></li>
+                <li><button type="button" class="action-buttons" onclick="addToExpression('-')">-</button></li>
             </ul>
             <ul class="button-items">
                 <li><button type="button" class="numbers-buttons" onclick="addToExpression('3')">3</button></li>
                 <li><button type="button" class="numbers-buttons" onclick="addToExpression('2')">2</button></li>
                 <li><button type="button" class="numbers-buttons" onclick="addToExpression('1')">1</button></li>
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('/')">/</button></li>
+                <li><button type="button" class="action-buttons" onclick="addToExpression('/')">/</button></li>
             </ul>
             <ul class="button-items">
                 <li><button type="submit" class="numbers-buttons">=</button></li>
                 <li><button type="button" class="numbers-buttons" onclick="addToExpression('.')">.</button></li>
                 <li><button type="button" class="numbers-buttons" onclick="addToExpression('0')">0</button></li>
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('*')">*</button></li>
+                <li><button type="button" class="action-buttons" onclick="addToExpression('*')">*</button></li>
             </ul>
-        
+         </div>
     </form>
-</div>
+   </div>
+  </div>
     <script>
         
 function addToExpression(item) {
@@ -106,7 +109,7 @@ function GetAllResults(){
         success: function (results) {
             var rows = "";
             $.each(results, function (index, result) {
-                rows += row(result);
+                rows += row(result.text);
             })
 
             $("table tbody").append(rows);
@@ -114,24 +117,23 @@ function GetAllResults(){
     });
 }
 
-        var row = function (result) {
-            return "<tr><td>" + result.text + "</td></tr>";
+        var row = function (ex) {
+            return "<tr><td>" + ex + "</td></tr>";
 };
 
-function CreateExample(text) {
+function CreateExample(formula) {
     $.ajax({
         url: '/Home/Insert',
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify({
-            Text: text
-
+            text: formula
         }),
         success: function (result) {
             clearForm();
             resulrWriter(result.text);
 
-            +$("table tbody").append(row(result));    
+            +$("table tbody").append(row(result.text));    
         }
     });
 }
@@ -143,7 +145,7 @@ function clearForm() {
 
 function resulrWriter(text) {
     var form = document.forms["calculatorForm"];
-    form.elements["Text"].value = text
+    form.elements["Text"].value = text;
 }
 
 $("form").submit(function (e) {

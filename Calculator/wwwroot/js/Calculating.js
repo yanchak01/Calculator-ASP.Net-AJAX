@@ -1,5 +1,4 @@
-﻿
-function addToExpression(item) {
+﻿function addToExpression(item) {
     var form = document.forms["calculatorForm"];
     var b = form.elements["Text"].value;
     var temp = new Array(b);
@@ -35,24 +34,25 @@ function isDigit(item) {
         return false;
 }
 
-function GetAllResults(){
+function GetAllResults() {
+
     $.ajax({
         url: '/Home/GetAll',
-        method: "GET",
+        type: 'GET',
         contentType: "aplication/json",
         success: function (results) {
             var rows = "";
-            results = document.
-            $.each(results, function (index,result) {
+            $.each(results, function (index, result) {
                 rows += row(result);
             })
+
             $("table tbody").append(rows);
         }
     });
 }
 
 var row = function (result) {
-    return "<tr><td>" + result.Text + "</td></tr>";
+    return "<tr><td>" + result.text + "</td></tr>";
 };
 
 function CreateExample(text) {
@@ -61,12 +61,14 @@ function CreateExample(text) {
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify({
-            Text: text
+            text: text
+
         }),
-        success: function (example) {
+        success: function (result) {
             clearForm();
-            resulrWriter(example.Text);
-            $("table tbody").append(row(result));    
+            resulrWriter(result);
+
+            +$("table tbody").append(row(result));
         }
     });
 }
@@ -76,9 +78,9 @@ function clearForm() {
     form.reset();
 }
 
-function resulrWriter(text) {
+function resulrWriter(result) {
     var form = document.forms["calculatorForm"];
-    form.elements["Text"].value = text
+    form.elements["Text"].value = result.text;
 }
 
 $("form").submit(function (e) {
@@ -86,11 +88,11 @@ $("form").submit(function (e) {
     $('#errors').empty();
     $('#errors').hide();
     var id = this.elements["id"].value;
-    var Text = this.elements["Text"].value;
+    var formula = document.forms["calculatorForm"].elements["Text"].value;
     if (id == 0)
-        CreateExample(Text);
+        CreateExample(formula);
     else {
         id == null;
-        CreateExample(Text);
+        CreateExample(formula);
     }
 });

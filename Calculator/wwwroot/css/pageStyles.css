@@ -7,7 +7,6 @@
     background-image: -webkit-linear-gradient(top left, #EEEEEE, #B1B1B1);
     background-image: -moz-linear-gradient(top left, #EEEEEE, #B1B1B1);
     background-image: linear-gradient(to bottom right, #EEEEEE, #B1B1B1);
-    background-image: url('../images/whiteb.jpg');
 }
 
 .table-overrides {
@@ -26,38 +25,6 @@
         padding: 1px;
     }
 
-#logout {
-    margin: 30px;
-    height: 50px;
-    width: 90px;
-    font-size: 16px;
-    background: #A29898;
-}
-
-    #logout a {
-        color: #403130;
-    }
-
-        #logout a:hover {
-            color: whitesmoke;
-        }
-
-#expression {
-    background-color: #f0f5f5;
-    padding: 10px;
-    height: 100px;
-}
-
-#userForm {
-    background-color: #AAA;
-}
-
-#button-delete {
-    margin: 3px;
-    padding: 3px;
-}
-
-
 .button-items {
     margin: 0;
     padding: 0;
@@ -67,19 +34,69 @@
     list-style: none;
 }
 
-.number-button {
-    margin: 0;
-    width: 100px;
-    height: 40px;
-    color: gray;
+.numbers-buttons {
+    width: 70px;
+    height: 70px;
+    color:white;
+    background-color:dimgray;
+    border-radius:50%;
+    font-size:25px;
 }
 
-    .number-button:hover {
-        background-color: darkgray;
+    .numbers-buttons:hover {
+        background-color:black;
     }
 
-.main_place {
-    align-items: flex-end;
-    justify-content: flex-end;
-    width: 400px !important;
+.action-buttons {
+    margin: 0;
+    width: 70px;
+    height: 70px;
+    color: white;
+    background-color: orange;
+    border-radius: 50%;
+    font-size: 25px;
+}
+   
+.action-buttons:hover{
+    background-color:white;
+    color:orange;
+}
+
+
+.clear-buttons {
+    margin: 0;
+    width: 140px;
+    height: 70px;
+    color: black;
+    background-color:lightgray;
+    border-radius:20%;
+}
+
+    .clear-buttons:hover{
+        background-color:white;
+    } 
+
+
+.my_form {
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+}
+
+.my_table {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 30px;
+    width:400px;
+    font-size:12px;
+    color:darkslategrey;
+}
+
+.input-field{
+    width:280px;
+    height:70px;
+    color:white;
+    background-color:black;
+    text-align:right;
+    font-size:20px;
 }
