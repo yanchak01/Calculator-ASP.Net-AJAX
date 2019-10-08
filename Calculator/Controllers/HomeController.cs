@@ -40,22 +40,23 @@ namespace Calculator.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Insert([FromBody] ExampleDTO exampleDTO)
+        public async Task<ExampleDTO> Insert([FromBody] ExampleDTO exampleDTO)
         {
             
             try
             {
                 var b = _exampleActions.Calculate(exampleDTO.Text);
+                var c = new ExampleDTO { Text = exampleDTO.Text + "=" + b.ToString() };
+                await _exampleManager.Insert(c);
 
-                await _exampleManager.Insert(new ExampleDTO { Text = exampleDTO.Text+"="+b.ToString() });
-
-                return Ok();
+                return c;
 
             }
             catch (Exception)
             {
+                var c = new ExampleDTO { Text = "Error" };
                 await _exampleManager.Insert(new ExampleDTO { Text = "Error" });
-                return Ok();
+                return c;
 
             }
         }
