@@ -1,6 +1,5 @@
 ﻿@using Calculator.DTO;
     <head>
-        <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <title>Calculator</title>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
@@ -8,54 +7,56 @@
         <link href="~/css/pageStyles.css" rel="stylesheet" />
 
     </head>
-<body>>
-<div>  
-    <table class="my-table" id="results">
+<body>
+    <div>
+    <table class="table-overrides" id="results" align="left">
         <thead><tr>
             <th></th>
             <th></th>
             </tr>
         </thead>
         <tbody></tbody>
-    </table>
-</div>
-    
-<div>
-    <form class="my-form" id="calculatorForm" name="calculatorForm">
+    </table>  
+
+    <form class="main_place" id="calculatorForm" name="calculatorForm">
         <input type="hidden" name="id" value="0" />
         <input class="form-control" size="50" id="Text" name="Text" />
-        <table id="buttons-table">
-            <tr>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('(')">(</button></td>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression(')')">)</button></td>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('^')">^</button></td>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('?')">?</button></td>
-            </tr>
-            <tr>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('9')">9</button></td>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('8')">8</button></td>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('7')">7</button></td>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('+')">+</button></td>
-            </tr>
-            <tr>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('6')">6</button></td>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('5')">5</button></td>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('4')">4</button></td>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('-')">-</button></td>
-            </tr>
-            <tr>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('3')">3</button></td>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('2')">2</button></td>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('1')">1</button></td>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('/')">/</button></td>
-            </tr>
-            <tr>
-                <td><button type="submit" class="numbers-buttons">=</button></td>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('.')">.</button></td>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('0')">0</button></td>
-                <td><button type="button" class="numbers-buttons" onclick="addToExpression('*')">*</button></td>
-            </tr>
-        </table>
+        
+            <ul class="button-items">
+                <li><button type="button" class="result-button" onclick="clearForm()">C</button></li>
+                <li><button type="button" class="result-button" onclick="">(</button></li>
+            </ul>
+            <ul class="button-items">
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('(')">(</button></li>
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression(')')">)</button></li>
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('^')">^</button></li>
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('?')">?</button></li>
+            </ul>
+            <ul class="button-items">
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('9')">9</button></li>
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('8')">8</button></li>
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('7')">7</button></li>
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('+')">+</button></li>
+            </ul>
+            <ul class="button-items">
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('6')">6</button></li>
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('5')">5</button></li>
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('4')">4</button></li>
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('-')">-</button></li>
+            </ul>
+            <ul class="button-items">
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('3')">3</button></li>
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('2')">2</button></li>
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('1')">1</button></li>
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('/')">/</button></li>
+            </ul>
+            <ul class="button-items">
+                <li><button type="submit" class="numbers-buttons">=</button></li>
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('.')">.</button></li>
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('0')">0</button></li>
+                <li><button type="button" class="numbers-buttons" onclick="addToExpression('*')">*</button></li>
+            </ul>
+        
     </form>
 </div>
     <script>
@@ -97,14 +98,14 @@ function isDigit(item) {
 }
 
 function GetAllResults(){
+
     $.ajax({
         url: '/Home/GetAll',
         type: 'GET',
         contentType: "aplication/json",
         success: function (results) {
             var rows = "";
-            results = document.
-            $.each(results, function (index,result) {
+            $.each(results, function (index, result) {
                 rows += row(result);
             })
 
@@ -113,8 +114,8 @@ function GetAllResults(){
     });
 }
 
-var row = function (result) {
-    return "<tr><td>" + result.Text + "</td></tr>";
+        var row = function (result) {
+            return "<tr><td>" + result.text + "</td></tr>";
 };
 
 function CreateExample(text) {
@@ -124,11 +125,13 @@ function CreateExample(text) {
         contentType: "application/json",
         data: JSON.stringify({
             Text: text
+
         }),
-        success: function (example) {
+        success: function (result) {
             clearForm();
-            resulrWriter(example.Text);
-            $("table tbody").append(row(result));    
+            resulrWriter(result.text);
+
+            +$("table tbody").append(row(result));    
         }
     });
 }
@@ -148,12 +151,12 @@ $("form").submit(function (e) {
     $('#errors').empty();
     $('#errors').hide();
     var id = this.elements["id"].value;
-    var Text = this.elements["Text"].value;
+    var formula = this.elements["Text"].value;
     if (id == 0)
-        CreateExample(Text);
+        CreateExample(formula);
     else {
         id == null;
-        CreateExample(Text);
+        CreateExample(formula);
     }
 });
         GetAllResults();

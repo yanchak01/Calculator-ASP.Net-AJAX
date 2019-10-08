@@ -3,42 +3,83 @@
     height: 100%;
     position: absolute;
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
     background-color: #AAA;
     background-image: -webkit-linear-gradient(top left, #EEEEEE, #B1B1B1);
     background-image: -moz-linear-gradient(top left, #EEEEEE, #B1B1B1);
     background-image: linear-gradient(to bottom right, #EEEEEE, #B1B1B1);
-}
-.numbers-buttons {
-    width: 40px;
-    height: 40px;
-    margin: 3px;
-    padding:3px;
-   
+    background-image: url('../images/whiteb.jpg');
 }
 
-.result-button{
-    width: 80px;
-    height: 40px;
-}
-
-.my-table {
+.table-overrides {
     align-items: flex-start;
     justify-content: flex-start;
     padding: 30px;
 }
-     .my-table{
-         width: 300px;
-         font-size: 10px;
-     }
-     .my-table th {
-         text-align: left;
-         padding: 1px;
-     }
 
-.my-form {
-    align-items: center;
-    justify-content: center;
+.table-overrides {
+    width: 500px;
+    font-size: 11px;
+}
+
+    .table-overrides th {
+        text-align: left;
+        padding: 1px;
+    }
+
+#logout {
+    margin: 30px;
+    height: 50px;
+    width: 90px;
+    font-size: 16px;
+    background: #A29898;
+}
+
+    #logout a {
+        color: #403130;
+    }
+
+        #logout a:hover {
+            color: whitesmoke;
+        }
+
+#expression {
+    background-color: #f0f5f5;
+    padding: 10px;
+    height: 100px;
+}
+
+#userForm {
+    background-color: #AAA;
+}
+
+#button-delete {
+    margin: 3px;
+    padding: 3px;
+}
+
+
+.button-items {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    list-style: none;
+}
+
+.number-button {
+    margin: 0;
+    width: 100px;
+    height: 40px;
+    color: gray;
+}
+
+    .number-button:hover {
+        background-color: darkgray;
+    }
+
+.main_place {
+    align-items: flex-end;
+    justify-content: flex-end;
     width: 400px !important;
 }
