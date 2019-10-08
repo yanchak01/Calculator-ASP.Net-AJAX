@@ -9,59 +9,60 @@
     </head>
 <body>
     <div style="width:1000%">
-    <div style="float:left; width:500px">
-    <table class="my_table" id="results">
-        <thead><tr>
-            <th></th>
-            <th></th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table> 
-   </div>
-    <div style="float:left;width:500px">
-    <form class="my_form" id="calculatorForm" name="calculatorForm">
-        <input type="hidden" name="id" value="0" />
-        <input class="input-field" size="50" id="Text" name="Text" />
-        <div>
-            <ul class="button-items">
-                <li><button type="button" class="clear-buttons" onclick="clearForm()">C</button></li>
-                <li><button type="button" class="clear-buttons" onclick="">(</button></li>
-            </ul>
-            <ul class="button-items">
-                <li><button type="button" class="action-buttons" onclick="addToExpression('(')">(</button></li>
-                <li><button type="button" class="action-buttons" onclick="addToExpression(')')">)</button></li>
-                <li><button type="button" class="action-buttons" onclick="addToExpression('^')">^</button></li>
-                <li><button type="button" class="action-buttons" onclick="addToExpression('?')">√</button></li>
-            </ul>
-            <ul class="button-items">
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('9')">9</button></li>
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('8')">8</button></li>
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('7')">7</button></li>
-                <li><button type="button" class="action-buttons" onclick="addToExpression('+')">+</button></li>
-            </ul>
-            <ul class="button-items">
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('6')">6</button></li>
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('5')">5</button></li>
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('4')">4</button></li>
-                <li><button type="button" class="action-buttons" onclick="addToExpression('-')">-</button></li>
-            </ul>
-            <ul class="button-items">
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('3')">3</button></li>
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('2')">2</button></li>
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('1')">1</button></li>
-                <li><button type="button" class="action-buttons" onclick="addToExpression('/')">/</button></li>
-            </ul>
-            <ul class="button-items">
-                <li><button type="submit" class="numbers-buttons">=</button></li>
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('.')">.</button></li>
-                <li><button type="button" class="numbers-buttons" onclick="addToExpression('0')">0</button></li>
-                <li><button type="button" class="action-buttons" onclick="addToExpression('*')">*</button></li>
-            </ul>
-         </div>
-    </form>
-   </div>
-  </div>
+        <div style="float:left;width:500px">
+            <form class="my_form" id="calculatorForm" name="calculatorForm">
+                <input type="hidden" name="id" value="0" />
+                <input class="input-field" size="50" id="Text" name="Text" />
+                <div>
+                    <ul class="button-items">
+                        <li><button type="button" class="clear-buttons" onclick="clearForm()">C</button></li>
+                        <li><button type="button" class="clear-buttons" onclick="resetAll()">Reset All</button></li>
+                    </ul>
+                    <ul class="button-items">
+                        <li><button type="button" class="action-buttons" onclick="addToExpression('(')">(</button></li>
+                        <li><button type="button" class="action-buttons" onclick="addToExpression(')')">)</button></li>
+                        <li><button type="button" class="action-buttons" onclick="addToExpression('^')">^</button></li>
+                        <li><button type="button" class="action-buttons" onclick="addToExpression('?')">√</button></li>
+                    </ul>
+                    <ul class="button-items">
+                        <li><button type="button" class="numbers-buttons" onclick="addToExpression('9')">9</button></li>
+                        <li><button type="button" class="numbers-buttons" onclick="addToExpression('8')">8</button></li>
+                        <li><button type="button" class="numbers-buttons" onclick="addToExpression('7')">7</button></li>
+                        <li><button type="button" class="action-buttons" onclick="addToExpression('+')">+</button></li>
+                    </ul>
+                    <ul class="button-items">
+                        <li><button type="button" class="numbers-buttons" onclick="addToExpression('6')">6</button></li>
+                        <li><button type="button" class="numbers-buttons" onclick="addToExpression('5')">5</button></li>
+                        <li><button type="button" class="numbers-buttons" onclick="addToExpression('4')">4</button></li>
+                        <li><button type="button" class="action-buttons" onclick="addToExpression('-')">-</button></li>
+                    </ul>
+                    <ul class="button-items">
+                        <li><button type="button" class="numbers-buttons" onclick="addToExpression('3')">3</button></li>
+                        <li><button type="button" class="numbers-buttons" onclick="addToExpression('2')">2</button></li>
+                        <li><button type="button" class="numbers-buttons" onclick="addToExpression('1')">1</button></li>
+                        <li><button type="button" class="action-buttons" onclick="addToExpression('/')">/</button></li>
+                    </ul>
+                    <ul class="button-items">
+                        <li><button type="submit" class="numbers-buttons">=</button></li>
+                        <li><button type="button" class="numbers-buttons" onclick="addToExpression('.')">.</button></li>
+                        <li><button type="button" class="numbers-buttons" onclick="addToExpression('0')">0</button></li>
+                        <li><button type="button" class="action-buttons" onclick="addToExpression('*')">*</button></li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <div style="float:left; width:500px">
+            <table class="my_table" id="results">
+                <thead>
+                    <tr>
+                        <th><button type="button" onclick="deleteAll()">Reset</button></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
     <script>
         
 function addToExpression(item) {
@@ -138,10 +139,29 @@ function CreateExample(formula) {
     });
 }
 
+        
+        function deleteAll() {
+            $.ajax({
+                url: '/Home/DeleteAll',
+                method: 'DELETE',
+                success: function () {
+                    $("table tbody ").remove();
+                    GetAllResults();
+                    $("table").append("<tbody></tbody>");
+                }
+            })
+        }
+
+        function resetAll() {
+            clearForm();
+            deleteAll();
+        }
+
 function clearForm() {
     var form = document.forms["calculatorForm"];
     form.reset();
-}
+        }
+
 
 function resulrWriter(text) {
     var form = document.forms["calculatorForm"];

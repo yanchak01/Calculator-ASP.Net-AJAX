@@ -57,5 +57,16 @@ namespace Calculator.Controllers
 
             }
         }
+        [HttpDelete]
+        public async Task DeleteAll()
+        {
+            var item = await _exampleManager.GetAll();
+            List<ExampleDTO> items = item.ToList();
+            for (int i = 0; i < items.Count; i++)
+            {
+                await _exampleManager.Delete(items[i]);
+            }
+
+        }
     }
 }
